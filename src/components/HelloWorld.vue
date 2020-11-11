@@ -24,7 +24,7 @@
     </ul>
     <h3>Setup Steps</h3>
     <b-list-group>
-      <b-list-group-item>Pull the repo from github - <code>git clone ...</code></b-list-group-item>
+      <b-list-group-item>Pull the repo from github - <code>git clone https://github.com/ArchitectingSoftware/se575-web-design-vue.git</code></b-list-group-item>
       <b-list-group-item>Prep the project dependencies - <code>yarn install</code></b-list-group-item>
       <b-list-group-item>Install JSON Server - <code>yarn global add json-server</code></b-list-group-item>
       <b-list-group-item>Prep IDE, If VS Code - add Vetur Plugin</b-list-group-item>
