@@ -1,5 +1,7 @@
 # basic-web
 
+Demo project for SE575 to show aspects of modern web design via the Vue framework
+
 ## Project setup
 ```
 yarn install
@@ -33,6 +35,7 @@ import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+Vue.use(VueAxios, axios)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 ```
