@@ -2,7 +2,13 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/layout">Layout</router-link> |
+      <router-link to="/dynamic">Dynamic</router-link> |
+      <router-link to="/props">Props</router-link> |
+      <router-link to="/events">Events</router-link> |
+      <router-link to="/webservices">Web Services</router-link> |
+      <router-link to="/state">State</router-link>
     </div>
     <router-view/>
   </div>
