@@ -51,8 +51,15 @@
             </b-row>
             <b-row>
               <b-col sm="8" class="offset-sm-2">
-                <b-alert :show="showErrorBanner" dismissible variant="danger" @dismissed="showErrorBanner=false">
+                <b-alert fade :show="showErrorBanner" dismissible variant="danger" @dismissed="showErrorBanner=false">
                   {{ errorMessage }}
+                </b-alert>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col sm="8" class="offset-sm-2">
+                <b-alert fade :show="showOkBanner" dismissible variant="success" @dismissed="showOKBanner=false">
+                  {{ okMessage }}
                 </b-alert>
               </b-col>
             </b-row>
@@ -90,15 +97,20 @@ export default class ServiceParent extends Vue {
   private searchPubId = "1";
   private showErrorBanner = false;
   private errorMessage = "";
+  private showOkBanner = false;
+  private okMessage = "";
 
   searchById() {
     console.log("searchbyid");
-    this.showErrorBanner = false;
+    this.showErrorBanner =  false;
+    this.showOkBanner =  false;
     this.courseList = [];
     const endpoint = this.defaultServerAddress + "/courses/" + this.searchPubId;
     this.$http
       .get<CourseType>(endpoint)
       .then((response) => {
+        this.okMessage = "Fetched Course with ID: " + this.searchPubId;
+        this.showOkBanner = true;
         const result = response.data;
         this.courseList = [result];
         console.log(result);
@@ -109,30 +121,38 @@ export default class ServiceParent extends Vue {
             + err.response!.status
             + "; Msg: "+ err.response!.statusText;
         this.showErrorBanner = true;
+        this.showOkBanner =  false;
       });
   }
   getAll() {
     console.log("getall");
     this.showErrorBanner = false;
+    this.showOkBanner =  false;
     this.courseList = [];
     const endpoint = this.defaultServerAddress + "/courses";
     this.$http.get<CourseType[]>(endpoint).then((response) => {
       const result = response.data;
       this.courseList = result;
+      this.okMessage = "Fetched All Courses - Total Received: " + this.courseList.length ;
+      this.showOkBanner = true;
       console.log(result);
     });
   }
 
   onUpdateClass(c: CourseType) {
     this.showErrorBanner = false;
+    this.showOkBanner =  false;
     this.courseList = [];
     const endpoint = this.defaultServerAddress + "/courses/" + c.id;
     this.$http.put<CourseType>(endpoint, c).then((response) => {
       const result = response.data;
       console.log("Updated ", result);
+      this.okMessage = "Updated Course with ID: " + c.id + " successfully";
+      this.showOkBanner = true;
     });
   }
   createNew() {
+    this.showOkBanner =  false;
     this.courseList = [];
     this.errorMessage = "Not Imnplemented Yet";
     this.showErrorBanner = true;
