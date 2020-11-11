@@ -49,6 +49,13 @@
                 </b-input-group>
               </b-col>
             </b-row>
+            <b-row>
+              <b-col sm="8" class="offset-sm-2">
+                <b-alert :show="showErrorBanner" dismissible variant="danger" @dismissed="showErrorBanner=false">
+                  {{ errorMessage }}
+                </b-alert>
+              </b-col>
+            </b-row>
           </b-card-text>
         </b-card>
       </b-container>
@@ -80,10 +87,14 @@ import { CourseType } from "./CoursesType";
 export default class ServiceParent extends Vue {
   private courseList: CourseType[] = [];
   private defaultServerAddress = "http://localhost:3000";
-  private searchPubId = "0";
+  private searchPubId = "1";
+  private showErrorBanner = false;
+  private errorMessage = "";
 
   searchById() {
     console.log("searchbyid");
+    this.showErrorBanner = false;
+    this.courseList = [];
     const endpoint = this.defaultServerAddress + "/courses/" + this.searchPubId;
     this.$http
       .get<CourseType>(endpoint)
@@ -94,10 +105,16 @@ export default class ServiceParent extends Vue {
       })
       .catch((err: AxiosError) => {
         console.log("ERROR ", err.response);
+        this.errorMessage = "HTTP Error:" 
+            + err.response!.status
+            + "; Msg: "+ err.response!.statusText;
+        this.showErrorBanner = true;
       });
   }
   getAll() {
     console.log("getall");
+    this.showErrorBanner = false;
+    this.courseList = [];
     const endpoint = this.defaultServerAddress + "/courses";
     this.$http.get<CourseType[]>(endpoint).then((response) => {
       const result = response.data;
@@ -107,14 +124,18 @@ export default class ServiceParent extends Vue {
   }
 
   onUpdateClass(c: CourseType) {
+    this.showErrorBanner = false;
+    this.courseList = [];
     const endpoint = this.defaultServerAddress + "/courses/" + c.id;
-    this.$http.put<CourseType>(endpoint,c).then((response) => {
+    this.$http.put<CourseType>(endpoint, c).then((response) => {
       const result = response.data;
-      console.log('Updated ',result);
+      console.log("Updated ", result);
     });
   }
   createNew() {
-    console.log("createnew");
+    this.courseList = [];
+    this.errorMessage = "Not Imnplemented Yet";
+    this.showErrorBanner = true;
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Title</h1>
+    <h1>Demo Using Comonents - Personal Page</h1>
 
     <about-header></about-header>
     <about-background></about-background>

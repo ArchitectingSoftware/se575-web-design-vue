@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container>
-      <p> AppStateView </p>
+      <p> AppStateView - Not Implemented Yet!</p>
     </b-container>
   </div>
 </template>
