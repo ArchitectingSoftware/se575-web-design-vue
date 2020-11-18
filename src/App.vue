@@ -8,7 +8,8 @@
       <router-link to="/props">Props</router-link> |
       <router-link to="/events">Events</router-link> |
       <router-link to="/webservices">Web Services</router-link> |
-      <router-link to="/state">State</router-link>
+      <router-link to="/simple_state">Simple State</router-link> |
+      <router-link to="/web_state">Web State</router-link>
     </div>
     <router-view/>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container>
-      <p> AppStateView - Not Implemented Yet!</p>
+      <simple-state-parent></simple-state-parent>
     </b-container>
   </div>
 </template>
@@ -9,10 +9,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import SimpleStateParent from '@/components/SimpleState/SimpleStateParent.vue'
 
-@Component
-export default class AppStateView extends Vue {
-  @Prop() private msg!: string;
+@Component({
+  components: {"simple-state-parent": SimpleStateParent}
+})
+export default class AppSimpleStateView extends Vue {
+
 }
 </script>
 
