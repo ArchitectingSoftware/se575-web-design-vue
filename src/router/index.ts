@@ -6,6 +6,7 @@ import LayoutView from '@/views/LayoutView.vue'
 import DynamicView from '@/views/DynamicView.vue'
 import WebServicesView from '@/views/WebServicesView.vue'
 import AppWebState from '@/views/AppWebState.vue'
+import BcDemoView from '@/views/BcDemoView.vue'
 
 Vue.use(VueRouter)
 
@@ -57,6 +58,11 @@ const routes: Array<RouteConfig> = [
     path: '/simple_state',
     name: 'SimpleState',
     component: () => import(/* webpackChunkName: "state" */ '../views/AppSimpleState.vue')
+  },
+  {
+    path: '/bc_demo',
+    name: 'BcDemo',
+    component: BcDemoView
   }
 ]
 
